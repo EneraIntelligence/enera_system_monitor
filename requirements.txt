@@ -1,0 +1,4 @@
+mongoengine==0.10.6
+pymongo==3.2.2
+pytz==2016.4
+virtualenv==15.0.1
