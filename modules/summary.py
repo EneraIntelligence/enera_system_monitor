@@ -20,10 +20,10 @@ class SummaryNetworks:
         timezone = pytz.timezone('America/Mexico_City')
         today = date.today()
         yesterday = today - timedelta(days=1)
-        # date_ini = datetime.datetime(yesterday.year, yesterday.month, yesterday.day, 0, 0, 0, 0, timezone)
-        # date_end = datetime.datetime(today.year, today.month, today.day, 0, 0, 0, 0, timezone)
-        date_ini = datetime.datetime(2016, 4, 26, 0, 0, 0, 0, timezone)
-        date_end = datetime.datetime(2016, 4, 27, 0, 0, 0, 0, timezone)
+        date_ini = datetime.datetime(yesterday.year, yesterday.month, yesterday.day, 0, 0, 0, 0, timezone)
+        date_end = datetime.datetime(today.year, today.month, today.day, 0, 0, 0, 0, timezone)
+        # date_ini = datetime.datetime(2016, 4, 26, 0, 0, 0, 0, timezone)
+        # date_end = datetime.datetime(2016, 4, 27, 0, 0, 0, 0, timezone)
 
         # pprint.pprint(date_ini)
 
