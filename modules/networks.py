@@ -1,21 +1,21 @@
-from models import *
 import json
+from models import *
 from bson import ObjectId
 import pprint
 
-from datetime import date, timedelta
-import datetime
 import pytz
+import datetime
+from datetime import date, timedelta
 
 
 class JSONEncoder(json.JSONEncoder):
     def default(self, o):
         if isinstance(o, ObjectId):
             return str(o)
-        return json.JSONEncoder.default(self, o)
+            return json.JSONEncoder.default(self, o)
 
 
-class SummaryNetworks:
+class summary:
     def __init__(self):
         timezone = pytz.timezone('America/Mexico_City')
         today = date.today()
@@ -25,9 +25,6 @@ class SummaryNetworks:
         # date_ini = datetime.datetime(2016, 4, 26, 0, 0, 0, 0, timezone)
         # date_end = datetime.datetime(2016, 4, 27, 0, 0, 0, 0, timezone)
 
-        # pprint.pprint(date_ini)
-
-        # print('> Day: ' + str(yesterday.day) + '-' + str(yesterday.month) + '-' + str(yesterday.year))
         print('> Day: ' + str(date_ini.day) + '-' + str(date_ini.month) + '-' + str(date_ini.year))
 
         networks = Network.objects(status='active')
@@ -626,30 +623,3 @@ class SummaryNetworks:
 
             # Summary
             summary.save()
-
-
-class SummaryBranches:
-    def __init__(self):
-        print('under-construction')
-
-
-class SummaryCampaigns:
-    def __init__(self):
-        result = CampaignLog.objects().aggregate(*[
-            {
-                '$match':
-                    {
-                        'user.gender': {'$exists': True},
-                        'user.gender': {'$ne': None},
-                    }
-            },
-            {
-                '$group':
-                    {
-                        '_id': '$user.gender',
-                        'count': {'$sum': 1}
-                    }
-            }
-        ])
-        for group in result:
-            print("Gender: " + group['_id'] + " count: " + str(group['count']))
