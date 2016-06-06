@@ -22,6 +22,16 @@ class SummaryNetwork(DynamicDocument):
         return super(SummaryNetwork, self).save(*args, **kwargs)
 
 
+class SummaryBranches(DynamicDocument):
+    created_at = DateTimeField(default=datetime.datetime.now(pytz.utc))
+    updated_at = DateTimeField(default=datetime.datetime.now(pytz.utc))
+    meta = {'collection': 'summary_branches'}
+
+    def save(self, *args, **kwargs):
+        self.updated_at = datetime.datetime.now(pytz.utc)
+        return super(SummaryBranches, self).save(*args, **kwargs)
+
+
 class Branch(DynamicDocument):
     meta = {'collection': 'branches'}
 
